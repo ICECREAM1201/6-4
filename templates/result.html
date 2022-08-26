@@ -24,30 +24,36 @@
     });
   </script>
   <body>
-    <header class="bd-header bg-dark py-3 d-flex align-items-stretch border-bottom border-dark">
-      <div class="container-fluid d-flex align-items-center">
-        <h1 class="d-flex align-items-center fs-4 text-white mb-0">
-           TelTelPose
-        </h1>
-      </div>
+    <header class="text-center bd-header bg-dark py-3 d-flex border-bottom border-dark">
+      <img src="2.png" height="20" width="150" class="rounded mx-auto d-block" >
     </header>
 
-    <div class="container">
-      <div class="mt-4">
-      <h2>結果発表だよ</h2>
-    </div>
+    <div class="mt-4 container">
+      <h2>結果だよ！お題とみんなの回答</h2>
+  
       <!--playerごとに回答を表示-->
       <div class="odai">
         <h5>{{player_list[0]}}さんのひみつのお題</h5>
         <strong>{{ odai }}</strong>
         <hr>
       </div>
+      
       {% for player in player_list[:-1] %}
-      <strong>「」</strong>
+      {% if loop.index0 >0 %}
+      <h5>{{player}}さんの予想：{{predict_list[loop.index0]}}</h5>  
+      {% endif %}
       <h5>{{player}}さんの骨格</h5>     
-      {% for image in images_list[loop.index0] %}
-      <img src="{{image}}"  width="300" height="200" style="border:2px solid">
-      {% endfor %}
+      <div class="d-flex justify-content-around mb-3">
+        {% for image in images_list[loop.index0] %}
+        <img src="{{image}}"  width="300" height="200" style="border:2px solid">
+        {% endfor %}
+      </div>
+
+      <div class="d-flex justify-content-around mb-3">
+        {% for image in images_list[loop.index0] %}
+        <h5>{{loop.index}}コマ目</h5>
+        {% endfor %}
+      </div>
       <hr>
       
       {% endfor %} 
